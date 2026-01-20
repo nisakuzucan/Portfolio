@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact / About — Nisa Kuzucan</title>
+
+  <!-- Instrument Serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="about-page">
+
+  <!-- TOP STRIPE -->
+  <header class="stripe-top">
+    <div class="stripe-inner">
+      <img src="assets/nisa-logo.svg" class="logo" alt="Nisa Kuzucan Logo" />
+
+      <div class="tab-buttons">
+        <a class="tab-btn works-btn nav-link" href="index.html">works! :o</a>
+        <a class="tab-btn about-btn nav-link" href="about.html">contact/about me :-)</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="content" id="pageContent">
+
+    <!-- ABOUT SECTION -->
+    <section class="about-wrap">
+
+      <div class="about-text">
+        <h2 class="about-title">ME! ME! ME!!!</h2>
+
+        <p>
+          Grew up in Istanbul, Ankara and Connecticut, I spent most of my younger years yearning
+          for memories and nostalgia, thank god I had art to keep me busy from becoming a 87 year
+          old at the age of 7.
+        </p>
+
+        <p>
+          I love biking, drawing, discovering new places and imagining myself as a tiny bug
+          going under rocks to throw secret bug parties and reading graphic novels.
+        </p>
+
+        <p>
+          I was an artist in my mother's womb, directing her like the rat in Ratatouille to
+          draw and I always liked creating stuff whether it is in my mind or in physical realm,
+          so let me help you create stuff! (could be in your mind or in physical realm)
+        </p>
+      </div>
+
+      <div class="about-photo">
+        <img src="assets/me.jpg" alt="Photo of me">
+      </div>
+
+    </section>
+
+    <!-- CONTACT STRIPE -->
+    <section class="contact-stripe">
+      <div class="contact-stripe-inner">
+
+        <h2 class="contact-title">GET IN TOUCH!</h2>
+
+        <form class="contact-form" id="contactForm"
+          action="https://formspree.io/f/xaqqbyjd" method="POST">
+
+          <input name="name" type="text" placeholder="NAME" required>
+          <input name="email" type="email" placeholder="EMAIL" required>
+          <textarea name="message" placeholder="MESSAGE" required></textarea>
+          <button type="submit">SUBMIT</button>
+        </form>
+
+        <p class="form-status" id="formStatus" aria-live="polite"></p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER STRIPE -->
+  <footer class="stripe-bottom">
+    <div class="footer-inner">
+
+      <span id="copyEmail" class="footer-mail">
+        nisakuzucan@gmail.com
+        <span class="copy-tooltip" id="copyTooltip">copied!</span>
+      </span>
+
+      <a href="https://instagram.com/sundidyouwakeup" target="_blank" class="footer-ig">
+        <img src="assets/insta.png" alt="Instagram">
+      </a>
+
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

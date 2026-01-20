@@ -1,0 +1,474 @@
+/* style.css */
+
+/* ---------- RESET & BODY LAYOUT ---------- */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 100vw kullandığımız için yatay scroll oluşmasın */
+html, body {
+  overflow-x: hidden;
+}
+
+
+/* ---------- STRIPES (FULL WIDTH BACKGROUND) ---------- */
+
+.stripe-top,
+.stripe-bottom {
+  flex-shrink: 0;
+  width: 100%;
+  height: 120px;
+  background-image: url("assets/stripe.jpg");
+  background-repeat: repeat-x;
+  background-position: top left;
+  background-size: auto 500%;
+}
+
+/* Stripe inner container */
+.stripe-inner {
+  max-width: 1100px;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20px;
+}
+
+
+/* ---------- LOGO ---------- */
+
+.logo {
+  height: 210px;
+  width: auto;
+  display: block;
+}
+
+
+/* ---------- STICKER BUTTONS (LINK) ---------- */
+
+.tab-buttons {
+  position: absolute;
+  right: 120px;
+  bottom: -32px;
+  display: flex;
+  gap: 60px;
+  z-index: 999;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
+  width: 240px;
+  height: 58px;
+  background: #FC90CB;
+  border: none;
+  cursor: pointer;
+
+  font-family: "Instrument Serif", serif;
+  font-size: 24px;
+  color: #9c0f52;
+
+  transition: transform 0.2s ease;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.tab-btn:visited,
+.tab-btn:active,
+.tab-btn:focus {
+  color: #9c0f52;
+  text-decoration: none;
+  outline: none;
+}
+
+.about-btn {
+  --normal-rot: 12deg;
+  --hover-rot: 28deg;
+  transform: rotate(var(--normal-rot)) translateY(-12px);
+}
+
+.works-btn {
+  --normal-rot: -12deg;
+  --hover-rot: -28deg;
+  transform: rotate(var(--normal-rot)) translateY(10px);
+}
+
+.tab-btn:hover {
+  transform: rotate(var(--hover-rot)) scale(1.05);
+}
+
+
+/* ---------- MAIN CONTENT (CENTERED CONTAINER) ---------- */
+
+.content {
+  flex: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+
+/* ---------- PAGE CONTENT FADE (SPA) ---------- */
+
+#pageContent {
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+#pageContent.is-fading-out {
+  opacity: 0;
+}
+
+
+/* ---------- MASONRY (PINTEREST STYLE) GALLERY ---------- */
+
+.works-masonry {
+  column-count: 3;
+  column-gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.works-masonry img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 32px;
+  break-inside: avoid;
+  cursor: zoom-in;
+}
+
+
+/* ---------- LIGHTBOX ---------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 40px 20px;
+
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.lightbox.open {
+  display: flex;
+  opacity: 1;
+}
+
+#lightboxImg {
+  max-width: min(1100px, 92vw);
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+
+  transform: scale(0.96);
+  transition: transform 0.25s ease;
+}
+
+.lightbox.open #lightboxImg {
+  transform: scale(1);
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  cursor: pointer;
+  color: #9c0f52;
+}
+
+
+/* ---------- FOOTER CONTENT ---------- */
+
+.footer-inner {
+  max-width: 1100px;
+  height: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 20px;
+}
+
+.footer-ig img {
+  width: 68px;
+  height: auto;
+}
+
+.footer-mail {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 0.12em;
+
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+
+  position: relative;
+  padding-left: 10px;
+  margin-right: auto;
+}
+
+/* tooltip */
+.copy-tooltip {
+  position: absolute;
+  left: 0;
+  top: -22px;
+  background: white;
+  color: #b31266;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 900px) {
+  .works-masonry { column-count: 2; }
+}
+
+@media (max-width: 600px) {
+  .tab-buttons {
+    right: 20px;
+    gap: 18px;
+  }
+
+  .tab-btn {
+    width: 160px;
+    height: 56px;
+    font-size: 18px;
+  }
+
+  .logo {
+    height: 140px;
+  }
+}
+
+@media (max-width: 500px) {
+  .works-masonry { column-count: 1; }
+}
+
+
+/* ---------- ABOUT STYLING ---------- */
+
+.about-wrap{
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 64px;
+  align-items: center;
+  text-align: left;
+}
+
+.about-title{
+  font-family: "Instrument Serif", serif;
+  font-size: 42px;
+  color: #9c0f52;
+  margin: 0 0 18px;
+  transform: rotate(-4deg);
+}
+
+.about-text{
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #111;
+}
+
+.about-text p{
+  margin: 0 0 18px;
+  max-width: 560px;
+}
+
+.about-photo img{
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  display: block;
+  border-radius: 28px;
+  transform: rotate(4deg);
+}
+
+@media (max-width: 900px){
+  .about-wrap{
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .about-title{
+    text-align: center;
+  }
+
+  .about-photo img{
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
+
+
+/* ---------- CONTACT (SHARED STYLES) ---------- */
+
+.contact-title{
+  font-family: "Instrument Serif", serif;
+  font-size: 48px;
+  color: #9c0f52;
+  margin: 0 0 26px;
+}
+
+.contact-form{
+  max-width: 760px;
+  margin: 0 auto;
+  background: #FFD1E9;
+  padding: 42px 46px;
+  border-radius: 26px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-form input,
+.contact-form textarea{
+  width: 88%;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.75);
+
+  font-family: "Instrument Serif", serif;
+  font-size: 18px;
+  color: #7a1642;
+
+  padding: 18px 22px;
+  margin-bottom: 16px;
+  border-radius: 999px;
+}
+
+.contact-form textarea{
+  border-radius: 28px;
+  min-height: 220px;
+  resize: vertical;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder{
+  color: #7a1642;
+}
+
+.contact-form button{
+  border: 2px solid #7a1642;
+  background: transparent;
+  color: #7a1642;
+
+  font-family: "Instrument Serif", serif;
+  font-size: 20px;
+
+  padding: 16px 56px;
+  margin-top: 10px;
+
+  border-radius: 999px;
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.contact-form button:hover{
+  background: #7a1642;
+  color: white;
+  transform: translateY(-3px) scale(1.05);
+}
+
+.contact-form button:active{
+  transform: translateY(0) scale(0.97);
+}
+
+.form-status{
+  margin: 16px 0 0;
+  font-family: "Instrument Serif", serif;
+  font-size: 20px;
+  color: #9c0f52;
+  text-align: center;
+  min-height: 28px;
+}
+
+
+/* =========================================================
+   ABOUT PAGE ONLY: FULL-WIDTH STRIPE CONTINUES INTO FOOTER
+   (Index/works etkilenmez)
+   ========================================================= */
+
+.about-page .content{
+  padding-bottom: 0; /* about'ta footer üstü beyaz boşluk kalksın */
+}
+
+/* Contact stripe'ı content container içinden çıkart, full width yap */
+.about-page .contact-stripe{
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+
+  background-image: url("assets/stripe.jpg");
+  background-repeat: repeat-x;
+  background-position: top left;
+  background-size: 100% auto;  /* senin istediğin */
+
+  padding-top: 70px;
+  padding-bottom: 120px;      /* footer yüksekliği kadar devam etsin */
+  margin-bottom: 0;
+}
+
+/* İçerik ortada kalsın */
+.about-page .contact-stripe-inner{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* Footer'ın kendi stripe background'unu kapat; yukarıdaki stripe devam etsin */
+.about-page .stripe-bottom{
+  background: none;
+  margin-top: -120px;         /* footer'ı stripe'ın üzerine oturt */
+}
+/* GET IN TOUCH title tweak (about page only) */
+.about-page .contact-title{
+  color: white;              /* beyaz */
+  transform: rotate(6deg);  /* hafif saga egik */
+  display: inline-block;    /* rotate düzgün çalışsın diye */
+}
+
