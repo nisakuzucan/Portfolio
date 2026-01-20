@@ -178,18 +178,20 @@ function bindSPA() {
    Init
 -------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
-  const mail = document.querySelector(".footer-mail");
-  const tooltip = document.querySelector(".copy-tooltip");
+  const emailEl = document.getElementById("copyEmail");
+  const tooltip = document.getElementById("copyTooltip");
 
-  if (!mail || !tooltip) return;
+  if (!emailEl || !tooltip) return;
 
-  mail.addEventListener("click", () => {
-    navigator.clipboard.writeText("nisakuzucan@gmail.com");
+  emailEl.addEventListener("click", () => {
+    const email = emailEl.childNodes[0].textContent.trim();
+
+    navigator.clipboard.writeText(email);
 
     tooltip.style.opacity = "1";
 
     setTimeout(() => {
       tooltip.style.opacity = "0";
-    }, 1500);
+    }, 1200);
   });
 });
