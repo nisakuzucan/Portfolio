@@ -1,6 +1,19 @@
 /* -----------------------------
    Email copy (all pages)
 -------------------------------- */
+function copyTextFallback(text) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.setAttribute("readonly", "");
+  ta.style.position = "fixed";
+  ta.style.left = "-9999px";
+  ta.style.top = "-9999px";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
 function bindEmailCopy() {
   const emailEl = document.getElementById("copyEmail");
   const tooltip = document.getElementById("copyTooltip");
@@ -9,14 +22,29 @@ function bindEmailCopy() {
   if (emailEl.dataset.bound === "1") return;
   emailEl.dataset.bound = "1";
 
-  emailEl.addEventListener("click", () => {
+  emailEl.addEventListener("click", async () => {
     const email = emailEl.childNodes[0].textContent.trim();
-    navigator.clipboard.writeText(email).then(() => {
-      tooltip.style.opacity = "1";
-      setTimeout(() => (tooltip.style.opacity = "0"), 1200);
-    });
+
+    // ✅ Clipboard varsa kullan, yoksa fallback
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(email);
+      } else {
+        copyTextFallback(email);
+      }
+    } catch (e) {
+      copyTextFallback(email);
+    }
+
+    // ✅ her durumda tooltip göster
+    tooltip.style.opacity = "1";
+    setTimeout(() => (tooltip.style.opacity = "0"), 1200);
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  bindEmailCopy();
+});
 
 /* -----------------------------
    Lightbox (delegated, SPA-safe)
@@ -195,3 +223,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1200);
   });
 });
+
