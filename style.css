@@ -472,3 +472,7 @@ html, body {
   display: inline-block;    /* rotate düzgün çalışsın diye */
 }
 
+.copy-tooltip {
+  z-index: 99999;
+}
+
