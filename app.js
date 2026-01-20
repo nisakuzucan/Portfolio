@@ -178,8 +178,18 @@ function bindSPA() {
    Init
 -------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
-  bindEmailCopy();
-  bindLightbox();
-  bindSPA();
-  bindContactForm(); // first load (about page)
+  const mail = document.querySelector(".footer-mail");
+  const tooltip = document.querySelector(".copy-tooltip");
+
+  if (!mail || !tooltip) return;
+
+  mail.addEventListener("click", () => {
+    navigator.clipboard.writeText("nisakuzucan@gmail.com");
+
+    tooltip.style.opacity = "1";
+
+    setTimeout(() => {
+      tooltip.style.opacity = "0";
+    }, 1500);
+  });
 });
