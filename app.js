@@ -206,21 +206,8 @@ function bindSPA() {
    Init
 -------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
-  const emailEl = document.getElementById("copyEmail");
-  const tooltip = document.getElementById("copyTooltip");
-
-  if (!emailEl || !tooltip) return;
-
-  emailEl.addEventListener("click", () => {
-    const email = emailEl.childNodes[0].textContent.trim();
-
-    navigator.clipboard.writeText(email);
-
-    tooltip.style.opacity = "1";
-
-    setTimeout(() => {
-      tooltip.style.opacity = "0";
-    }, 1200);
-  });
+  bindEmailCopy();
+  bindLightbox();
+  bindSPA();
+  bindContactForm();
 });
-
